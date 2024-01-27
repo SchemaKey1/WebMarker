@@ -1,0 +1,11 @@
+const NODE_TYPES = {
+  USER_NODE: "USER_NODE",
+};
+
+const USER_ID_TYPE = {
+  USERID: "USERID",
+  PHONE_NUMBER: "PHONE_NUMBER",
+  EMAILID: "EMAILID",
+};
+
+export { NODE_TYPES, USER_ID_TYPE };

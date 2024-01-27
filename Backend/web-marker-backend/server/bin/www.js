@@ -1,6 +1,10 @@
 import app from "../app";
 import debigLib from "debug";
 import http from "http";
+import DbDriver from "../models";
+
+new DbDriver();
+
 const debug = debigLib("web-marker-backend:server");
 
 var port = normalizePort(process.env.PORT || "3000");
