@@ -1,5 +1,10 @@
 const NODE_TYPES = {
   USER_NODE: "USER_NODE",
+  TEXT_NODE: "TEXT_NODE",
+  REFERENCE_NODE: "REFERENCE_NODE",
+  DATA_NODE: "DATA_NODE",
+  FOLDER_NODE: "FOLDER_NODE",
+  FILE_NODE: "FILE_NODE",
 };
 
 const USER_ID_TYPE = {
@@ -8,4 +13,50 @@ const USER_ID_TYPE = {
   EMAILID: "EMAILID",
 };
 
-export { NODE_TYPES, USER_ID_TYPE };
+const USER_NODE_PROPERTY = {
+  FIRST_NAME: "firstName",
+  LAST_NAME: "lastName",
+  PHONE_NUMBER: "phoneNumber",
+  EMAIL_ID: "emailId",
+  USER_ID: "userId",
+  USER_ID_TYPE: "userIdType",
+};
+
+const FOLDER_NODE_PROPERTIES = {
+  TITLE: "title",
+  CREATED_ON: "createOn",
+};
+
+const FILE_NODE_PROPERTIES = {
+  TITLE: "title",
+  CREATED_ON: "createdOn",
+};
+
+const TEXT_NODE_PROPERTY = {
+  TEXT_CONTENT: "textConetnt",
+  CREATED_ON: "createdOn",
+};
+
+const RELATIONSHIP_TYPE = {
+  NEXT_NODE: "nextNode",
+  ROOT_FOLDER_NODE: "ROOT_FOLDER_NODE",
+  HAS_CHILD: "HAS_CHILD",
+  REFERENCE_NODE: "REFERENCE_NODE",
+  LAST_NODE: "LAST_NODE",
+};
+
+const REFERENCE_NODE_RELATIONSHIPS = {
+  REFERENCE_NODE: "referenceNode",
+  LAST_NODE: "lastNode",
+};
+
+export {
+  NODE_TYPES,
+  USER_ID_TYPE,
+  USER_NODE_PROPERTY,
+  TEXT_NODE_PROPERTY,
+  RELATIONSHIP_TYPE,
+  REFERENCE_NODE_RELATIONSHIPS,
+  FOLDER_NODE_PROPERTIES,
+  FILE_NODE_PROPERTIES,
+};

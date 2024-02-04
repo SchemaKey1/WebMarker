@@ -1,7 +1,8 @@
 import dbConfig from "../../config/db.config";
 import neo4j from "neo4j-driver";
 import { executeQuery } from "./utils";
-import { NODE_TYPES } from "./constants.js";
+import UserNode from "./Nodes/UserNode.js";
+import TextNode from "./Nodes/DataNodes/TextNode.js";
 
 class DbDriver {
   driverInstance = null;
@@ -14,14 +15,14 @@ class DbDriver {
   }
 
   async CreateDataBaseContraints(driver) {
-    const userEmailId = `CREATE CONSTRAINT user_emailId IF NOT EXISTS FOR (n: ${NODE_TYPES.USERNODE}) REQUIRE n.emailId IS UNIQUE`;
-    const userPhoneNumber = `CREATE CONSTRAINT user_phoneNumber IF NOT EXISTS FOR (n: ${NODE_TYPES.USERNODE}) REQUIRE n.phoneNumber IS UNIQUE`;
-    const userUserId = `CREATE CONSTRAINT user_userId IF NOT EXISTS FOR (n: ${NODE_TYPES.USERNODE}) REQUIRE n.userId IS UNIQUE`;
-    const userNodeKey = `CREATE CONSTRAINT user_nodeKey IF NOT EXISTS FOR (n: ${NODE_TYPES.USERNODE}) REQUIRE n.userId IS NODE KEY`;
-    return await executeQuery(
-      [userEmailId, userPhoneNumber, userUserId, userNodeKey],
-      driver
-    );
+    try {
+      return await executeQuery(
+        [...UserNode.constraintsQueries(), ...TextNode.constraintsQueries()],
+        driver
+      );
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   CreateDriverInstance() {

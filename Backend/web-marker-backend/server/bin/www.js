@@ -3,8 +3,6 @@ import debigLib from "debug";
 import http from "http";
 import DbDriver from "../models";
 
-new DbDriver();
-
 const debug = debigLib("web-marker-backend:server");
 
 var port = normalizePort(process.env.PORT || "3000");
@@ -15,6 +13,10 @@ var server = http.createServer(app);
 server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);
+
+server.on("listening", () => {
+  new DbDriver();
+});
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
