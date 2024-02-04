@@ -10,12 +10,16 @@ const executeQuery = async (queries, driver) => {
 };
 
 const formatResponseStatus = (result) => {
+  let mResult = {};
+
   if (result.status == "fulfilled") {
-    result.status = 200;
+    mResult.status = 200;
+    mResult.status = result.status;
+    mResult.records = result.value.records;
   } else {
     result.status = 500;
   }
-  return result;
+  return mResult;
 };
 
 const convertToCypherUpdateQuery = (matchObj, data) => {

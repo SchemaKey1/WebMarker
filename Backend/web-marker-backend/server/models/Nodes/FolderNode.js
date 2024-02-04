@@ -57,6 +57,23 @@ class FolderNode {
       console.log(err);
     }
   }
+
+  static async getAllFoldersByParentFolderId(parentFolderId) {
+    const getAllFolderQuery = `MATCH (node: ${NODE_TYPES.FOLDER_NODE}) -[:${RELATIONSHIP_TYPE.HAS_CHILD}]-> (childNode)
+    WHERE ID(node) = ${parentFolderId}
+    return childNode`;
+
+    console.log(`running this query - ${getAllFolderQuery}`);
+
+    try {
+      const result = await executeQuery([getAllFolderQuery]);
+      console.log("folder is created");
+      console.log(result[0]);
+      return result[0];
+    } catch {
+      console.log(err);
+    }
+  }
 }
 
 export default FolderNode;
